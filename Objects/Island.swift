@@ -40,7 +40,7 @@ class Island : GameObject {
     override func Update() {
         self.position.y -= self.verticalSpeed!
         self.CheckBounds()
-        self.zRotation = self.zRotation - 0.5
+        self.zRotation = self.zRotation - 0.4
         
     
     }

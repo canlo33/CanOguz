@@ -17,10 +17,10 @@ class GameScene: SKScene {
     var ocean2: Ocean?
     var island: Island?
     var bullet: Bullet?
+    var bulletList : Array<Bullet> = Array()
     
     var clouds: [Cloud] = []
     var cloudNum: Int = 3
-    
     
     var degToRad = 0.01745329252
     
@@ -57,8 +57,6 @@ class GameScene: SKScene {
             self.addChild(clouds[index])
         }
         
-     
-        
         
         // Label Config and adding to the scene
         ScoreBoard.LivesLabel.position.x = -screenSize.width + 130.0
@@ -85,21 +83,11 @@ class GameScene: SKScene {
         
         addChild(ScoreBoard.ScoreLabel)
         
-  
-   
-        
-       
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
         plane?.position = CGPoint(x: pos.x, y: -500.0)
-        bullet = Bullet()
-        bullet?.position = plane!.position
-        addChild(bullet!)
-        
-        bullet?.Update()
-        print("bullet created position")
         
     }
     
@@ -109,7 +97,12 @@ class GameScene: SKScene {
     
     func touchUp(atPoint pos : CGPoint) {
        plane?.position = CGPoint(x: pos.x, y: -500.0)
-  
+        bullet = Bullet()
+        bulletList.append(bullet!)
+        
+        bullet?.position = plane!.position
+        addChild(bullet!)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -144,6 +137,19 @@ class GameScene: SKScene {
             cloud.Update()
             Collision.check(scene: self, object1: plane!, object2: cloud)
         }
+      /*  for bullet  in bulletList {
+            bullet.Update()
+            Collision.check(scene: self, object1: bullet!, object2: bullet)
+        }
+         */
+        
+        for bullet in bulletList {
+            for cloud in clouds {
+                bullet.Update()
+                Collision.check(scene: self, object1: cloud, object2: bullet)
+                
+            }
+       }
         
     }
 

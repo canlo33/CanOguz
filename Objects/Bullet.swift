@@ -22,6 +22,7 @@ class Bullet : GameObject {
     
     override func Start() {
         self.verticalSpeed = 15.0
+        self.zPosition = 3
         
     }
     
@@ -39,7 +40,7 @@ class Bullet : GameObject {
     }
     
     override func Update() {
-        self.position.y += 5
+        self.position.y += self.verticalSpeed!
         
     }
 }

@@ -24,6 +24,7 @@ class Cloud : GameObject {
     override func Reset() {
         self.isColliding = false
         self.zPosition = 3
+        self.alpha = 1
         //let newScale = (self.randomSource?.nextUniform())! + 1.0
         //self.setNewScale(scale: CGFloat(newScale))
         self.verticalSpeed = CGFloat(((self.randomSource?.nextInt(upperBound: 10))!) + 10)

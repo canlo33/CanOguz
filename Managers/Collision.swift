@@ -13,13 +13,22 @@ class Collision {
             
             
                 switch(object2.name) {
-                    case "island":
-                        ScoreBoard.Score += 100
-                        scene.run(SKAction.playSoundFileNamed("yay", waitForCompletion: false))
-                    case "cloud":
+                    case "blackhole1":
+                        
+                        print("BLACKHOLE", object1.name! + " " + object2.name!)
+ 
+                    case "asteroid":
                         // Game over
-                        ScoreBoard.Lives -= 1
-                        scene.run(SKAction.playSoundFileNamed("thunder", waitForCompletion: false))
+                        if(object2.alpha == 1){
+                            object1.alpha = 0
+                            print("Game Over")
+                        }
+                        print("ASTEROID", object1.name! + " " + object2.name!)
+                case "bullet":
+                    // Game over
+                    object1.alpha = 0
+                    object2.alpha = 0
+                    print("BULLET", object1.name! + " " + object2.name!)
                     default:
                         print("ERROR: Collision with something else")
                 }
