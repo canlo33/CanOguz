@@ -13,7 +13,7 @@ class Cloud : GameObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // class functions
+    // class functionsmkmj
     
     override func Start() {
         self.alpha = 1
