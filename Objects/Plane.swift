@@ -4,7 +4,7 @@ import GameplayKit
 class Plane : GameObject {
     
     init() {
-        super.init(imageString: "player", initialScale: 0.1)
+        super.init(imageString: "player", initialScale: 0.25)
         self.Start()
     }
     

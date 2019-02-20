@@ -11,8 +11,9 @@ var screenHeight: CGFloat?
 
 class GameScene: SKScene {
     
-    
+    public var isGameOver:Bool = false
     var plane: Plane?
+    var cloud: Cloud?
     var ocean1: Ocean?
     var ocean2: Ocean?
     var island: Island?
@@ -57,6 +58,7 @@ class GameScene: SKScene {
             self.addChild(clouds[index])
         }
         
+        /*
         
         // Label Config and adding to the scene
         ScoreBoard.LivesLabel.position.x = -screenSize.width + 130.0
@@ -82,6 +84,7 @@ class GameScene: SKScene {
         
         
         addChild(ScoreBoard.ScoreLabel)
+    */
         
     }
     
@@ -96,12 +99,17 @@ class GameScene: SKScene {
     }
     
     func touchUp(atPoint pos : CGPoint) {
-       plane?.position = CGPoint(x: pos.x, y: -500.0)
+        plane?.position = CGPoint(x: pos.x, y: -500.0)
         bullet = Bullet()
         bulletList.append(bullet!)
         
         bullet?.position = plane!.position
         addChild(bullet!)
+ 
+
+   
+
+       
         
     }
     
@@ -136,6 +144,16 @@ class GameScene: SKScene {
         for cloud in clouds {
             cloud.Update()
             Collision.check(scene: self, object1: plane!, object2: cloud)
+            if(Collision.gameOverCheck(scene: self, object1: plane!, object2: cloud) && cloud.alpha == 1) {
+                
+                if let gameOverScene = GameOverScene(fileNamed: "GameOverScene") {
+                    gameOverScene.scaleMode = .aspectFill
+                    view?.presentScene(gameOverScene)
+                }
+              
+                
+        
+            }
         }
       /*  for bullet  in bulletList {
             bullet.Update()
@@ -147,10 +165,12 @@ class GameScene: SKScene {
             for cloud in clouds {
                 bullet.Update()
                 Collision.check(scene: self, object1: cloud, object2: bullet)
+               
                 
             }
-       }
+        }
         
-    }
 
+    }
+    
 }
