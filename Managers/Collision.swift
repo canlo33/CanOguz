@@ -18,7 +18,7 @@ class Collision {
                     print("BLACKHOLE", object1.name! + " " + object2.name!)
                     
                 case "asteroid":
-                    // Game over
+                    
                     if(object2.alpha == 1){
                        // object2.alpha = 0
                         print("Game Over")

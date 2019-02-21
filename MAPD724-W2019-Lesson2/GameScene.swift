@@ -69,9 +69,10 @@ class GameScene: SKScene {
         ScoreBoard.LivesLabel.zPosition = 5
         ScoreBoard.LivesLabel.fontName = "Arial Bold"
         ScoreBoard.Lives = 5
+          addChild(ScoreBoard.LivesLabel)
         
-        
-        addChild(ScoreBoard.LivesLabel)
+        */
+       
         
         ScoreBoard.ScoreLabel.position.x = screenSize.width - 170.0
         ScoreBoard.ScoreLabel.position.y = screenSize.height - 55.0
@@ -84,7 +85,7 @@ class GameScene: SKScene {
         
         
         addChild(ScoreBoard.ScoreLabel)
-    */
+    
         
     }
     
@@ -137,6 +138,8 @@ class GameScene: SKScene {
         island?.Update()
         plane?.Update()
         bullet?.Update()
+        ScoreBoard.Score += 1
+        
         
         Collision.check(scene: self, object1: plane!, object2: island!)
         

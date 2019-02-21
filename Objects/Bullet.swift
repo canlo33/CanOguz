@@ -12,7 +12,7 @@ import GameplayKit
 class Bullet : GameObject {
     
     init() {
-        super.init(imageString: "bullet", initialScale: 0.5)
+        super.init(imageString: "bullet", initialScale: 0.65)
         self.Start()
     }
     
