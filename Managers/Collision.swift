@@ -20,8 +20,7 @@ class Collision {
                 case "asteroid":
                     // Game over
                     if(object2.alpha == 1){
-                        object1.alpha = 0
-                        object2.alpha = 0
+                       // object2.alpha = 0
                         print("Game Over")
                     
                     }
