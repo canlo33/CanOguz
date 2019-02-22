@@ -14,8 +14,9 @@ import AVFoundation
 class GameOverScene: SKScene {
     
     var gameOverLabel: SKLabelNode!
-    var score: SKLabelNode!
-    var playAgain: SKLabelNode!
+    var score: SKLabelNode?
+    var playAgain: SKLabelNode?
+    var quit: SKLabelNode?
     
     override func didMove(to view: SKView) {
         
@@ -23,7 +24,16 @@ class GameOverScene: SKScene {
         
         score = SKLabelNode(fileNamed: "score")
         
-       // score.text = String(ScoreBoard.Score)
+        score?.name = "score"
+        
+        playAgain?.name = "playAgain"
+        
+        quit?.name = "quit"
+        
+        
+        
+        score?.text = ScoreBoard.ScoreLabel.text
+        
         
     }
     
@@ -35,6 +45,9 @@ class GameOverScene: SKScene {
             
             if nodeArray.first?.name == "playAgain" {
                 
+               
+                
+                ScoreBoard.ScoreLabel.removeFromParent()
                 if let gameScene = GameScene(fileNamed: "GameScene") {
                     gameScene.scaleMode = .aspectFill
                     view?.presentScene(gameScene)
@@ -50,9 +63,6 @@ class GameOverScene: SKScene {
         }
     
     }
-        
-        
-
         
 }
 

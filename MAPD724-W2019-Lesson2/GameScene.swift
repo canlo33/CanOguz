@@ -1,4 +1,4 @@
-
+import CoreMotion
 import SpriteKit
 import GameplayKit
 import UIKit
@@ -22,6 +22,9 @@ class GameScene: SKScene {
     
     var clouds: [Cloud] = []
     var cloudNum: Int = 3
+    
+    var motionManager = CMMotionManager()
+    var destX:CGFloat  = 0.0
     
     var degToRad = 0.01745329252
     
@@ -48,6 +51,21 @@ class GameScene: SKScene {
         plane = Plane()
         plane?.position = CGPoint(x: 0.0, y: -500.0)
         addChild(plane!)
+        
+        if motionManager.isAccelerometerAvailable {
+            // 2
+            motionManager.accelerometerUpdateInterval = 0.1
+            motionManager.startAccelerometerUpdates(to: .main) {
+                (data, error) in
+                guard let data = data, error == nil else {
+                    return
+                }
+                
+                // 3
+                let currentX = self.plane!.position.x
+                self.destX = currentX + CGFloat(data.acceleration.x * 2000)
+            }
+        }
         
         
         
@@ -91,27 +109,22 @@ class GameScene: SKScene {
     
     
     func touchDown(atPoint pos : CGPoint) {
-        plane?.position = CGPoint(x: pos.x, y: -500.0)
+       // plane?.position = CGPoint(x: pos.x, y: -500.0)
         
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-       plane?.position = CGPoint(x: pos.x, y: -500.0)
+      // plane?.position = CGPoint(x: pos.x, y: -500.0)
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        plane?.position = CGPoint(x: pos.x, y: -500.0)
+       // plane?.position = CGPoint(x: pos.x, y: -500.0)
         bullet = Bullet()
         bulletList.append(bullet!)
         
         bullet?.position = plane!.position
         addChild(bullet!)
  
-
-   
-
-       
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -137,6 +150,10 @@ class GameScene: SKScene {
         ocean2?.Update()
         island?.Update()
         plane?.Update()
+        let action = SKAction.moveTo(x: destX, duration: 1)
+        
+        plane?.run(action)
+        
         bullet?.Update()
         ScoreBoard.Score += 1
         
@@ -148,6 +165,8 @@ class GameScene: SKScene {
             cloud.Update()
             Collision.check(scene: self, object1: plane!, object2: cloud)
             if(Collision.gameOverCheck(scene: self, object1: plane!, object2: cloud) && cloud.alpha == 1) {
+                
+                UserDefaults.standard.set(String(ScoreBoard.Score), forKey: "myScore")
                 
                 if let gameOverScene = GameOverScene(fileNamed: "GameOverScene") {
                     gameOverScene.scaleMode = .aspectFill
@@ -169,11 +188,9 @@ class GameScene: SKScene {
                 bullet.Update()
                 Collision.check(scene: self, object1: cloud, object2: bullet)
                
-                
             }
         }
         
-
     }
     
 }

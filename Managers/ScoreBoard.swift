@@ -11,6 +11,7 @@ class ScoreBoard {
     // public static variables
     public static var Score:Int = 0 {
         didSet {
+         
             ScoreLabel.text = "Score: " + String(Score)
         }
     }
