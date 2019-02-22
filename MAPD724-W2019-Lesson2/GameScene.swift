@@ -52,6 +52,10 @@ class GameScene: SKScene {
         plane?.position = CGPoint(x: 0.0, y: -500.0)
         addChild(plane!)
         
+        print(screenSize.width)
+        
+        print(screenSize.height)
+        
         if motionManager.isAccelerometerAvailable {
             // 2
             motionManager.accelerometerUpdateInterval = 0.1
@@ -79,9 +83,8 @@ class GameScene: SKScene {
    
        
         
-        ScoreBoard.ScoreLabel.position.x = screenSize.width - 170.0
-        ScoreBoard.ScoreLabel.position.y = screenSize.height - 55.0
-        
+        ScoreBoard.ScoreLabel.position.x = 0
+        ScoreBoard.ScoreLabel.position.y = (screenSize.height * 0.5) + 90
         ScoreBoard.ScoreLabel.fontColor = UIColor.yellow
         ScoreBoard.ScoreLabel.fontSize = 48.0
         ScoreBoard.ScoreLabel.zPosition = 5
@@ -96,16 +99,16 @@ class GameScene: SKScene {
     
     
     func touchDown(atPoint pos : CGPoint) {
-       // plane?.position = CGPoint(x: pos.x, y: -500.0)
+      
         
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-      // plane?.position = CGPoint(x: pos.x, y: -500.0)
+      
     }
     
     func touchUp(atPoint pos : CGPoint) {
-       // plane?.position = CGPoint(x: pos.x, y: -500.0)
+   
         bullet = Bullet()
         bulletList.append(bullet!)
         
@@ -136,11 +139,13 @@ class GameScene: SKScene {
         ocean1?.Update()
         ocean2?.Update()
         island?.Update()
+       
         plane?.Update()
         let action = SKAction.moveTo(x: destX, duration: 1)
         
         plane?.run(action)
         
+      //  let distance = CGPoint.Distance(P1: plane!.position, P2: island!.position)
         bullet?.Update()
         ScoreBoard.Score += 1
         
@@ -153,7 +158,9 @@ class GameScene: SKScene {
             Collision.check(scene: self, object1: plane!, object2: cloud)
             if(Collision.gameOverCheck(scene: self, object1: plane!, object2: cloud) && cloud.alpha == 1) {
                 
-                UserDefaults.standard.set(String(ScoreBoard.Score), forKey: "myScore")
+                
+               // UserDefaults.standard.set(String(ScoreBoard.Score), forKey: "HighScore")
+                
                 
                 if let gameOverScene = GameOverScene(fileNamed: "GameOverScene") {
                     gameOverScene.scaleMode = .aspectFill
@@ -164,11 +171,7 @@ class GameScene: SKScene {
         
             }
         }
-      /*  for bullet  in bulletList {
-            bullet.Update()
-            Collision.check(scene: self, object1: bullet!, object2: bullet)
-        }
-         */
+ 
         
         for bullet in bulletList {
             for cloud in clouds {
