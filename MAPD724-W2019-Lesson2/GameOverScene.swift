@@ -14,7 +14,7 @@ import AVFoundation
 class GameOverScene: SKScene {
     
     var gameOverLabel: SKLabelNode!
-    var score: SKLabelNode?
+    var score = SKLabelNode(text: "Score : ")
     var playAgain: SKLabelNode?
     var quit: SKLabelNode?
     
@@ -22,17 +22,20 @@ class GameOverScene: SKScene {
         
         gameOverLabel = SKLabelNode(fileNamed: "gameOverLabel")
         
-        score = SKLabelNode(fileNamed: "score")
-        
-        score?.name = "score"
-        
         playAgain?.name = "playAgain"
         
         quit?.name = "quit"
         
+        score.name = "score"
+        score.position = CGPoint(x: 0.0, y: 135)
+        score.fontColor = UIColor.yellow
+        score.fontSize = 48.0
+        score.zPosition = 5
+        score.fontName = "Arial"
+        score.text?.append(String(ScoreBoard.Score))
         
+        addChild(score)
         
-        score?.text = ScoreBoard.ScoreLabel.text
         
         
     }

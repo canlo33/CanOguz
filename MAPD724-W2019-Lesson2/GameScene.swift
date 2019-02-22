@@ -76,20 +76,7 @@ class GameScene: SKScene {
             self.addChild(clouds[index])
         }
         
-        /*
-        
-        // Label Config and adding to the scene
-        ScoreBoard.LivesLabel.position.x = -screenSize.width + 130.0
-        ScoreBoard.LivesLabel.position.y = screenSize.height - 55.0
-        
-        ScoreBoard.LivesLabel.fontColor = UIColor.yellow
-        ScoreBoard.LivesLabel.fontSize = 48.0
-        ScoreBoard.LivesLabel.zPosition = 5
-        ScoreBoard.LivesLabel.fontName = "Arial Bold"
-        ScoreBoard.Lives = 5
-          addChild(ScoreBoard.LivesLabel)
-        
-        */
+   
        
         
         ScoreBoard.ScoreLabel.position.x = screenSize.width - 170.0
@@ -98,7 +85,7 @@ class GameScene: SKScene {
         ScoreBoard.ScoreLabel.fontColor = UIColor.yellow
         ScoreBoard.ScoreLabel.fontSize = 48.0
         ScoreBoard.ScoreLabel.zPosition = 5
-        ScoreBoard.ScoreLabel.fontName = "Arial Bold"
+        ScoreBoard.ScoreLabel.fontName = "Arial"
         ScoreBoard.Score = 0
         
         
