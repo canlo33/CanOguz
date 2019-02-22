@@ -49,13 +49,13 @@ class Island : GameObject {
          
             if((plane!.position.x - self.position.x) < 0) {
                 print("Move Right")
-                plane!.position.x += 5
+                plane!.position.x += 200
                 print(plane!.position.x)
             }
             
            else if((plane!.position.x - self.position.x) >= 0) {
                 print("Move Left")
-                plane!.position.x += -5
+                plane!.position.x += -200
                 print(plane!.position.x)
             }
         }

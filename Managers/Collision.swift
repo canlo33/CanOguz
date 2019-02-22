@@ -30,8 +30,17 @@ class Collision {
                     
                     print(object1.name! + " DESTROYED")
                     print(object2.name! + " DESTROYED2222")
-                    object1.alpha = 0
-                    object2.alpha = 0
+                    
+
+                    
+                    if(object1.alpha == 1){
+                        object2.alpha = 0
+                        object1.alpha = 0
+                    }
+                    else if(object1.alpha == 0){
+                        object2.alpha = 1
+                    }
+                    
 
  
             

@@ -67,8 +67,8 @@ class GameScene: SKScene {
                 
                 // 3
                 let currentX = self.plane!.position.x
-                self.destX = currentX + CGFloat(data.acceleration.x * 2000)
-                self.plane!.CheckBounds()
+                self.destX = currentX + CGFloat(data.acceleration.x * 1000)
+                
             }
         }
         
@@ -142,7 +142,7 @@ class GameScene: SKScene {
         island?.Update()
        
         plane?.Update()
-        let action = SKAction.moveTo(x: destX, duration: 1)
+        let action = SKAction.moveTo(x: destX, duration: 0.4)
         
         plane?.run(action)
         plane?.CheckBounds()
