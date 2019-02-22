@@ -68,6 +68,7 @@ class GameScene: SKScene {
                 // 3
                 let currentX = self.plane!.position.x
                 self.destX = currentX + CGFloat(data.acceleration.x * 2000)
+                self.plane!.CheckBounds()
             }
         }
         
@@ -144,6 +145,7 @@ class GameScene: SKScene {
         let action = SKAction.moveTo(x: destX, duration: 1)
         
         plane?.run(action)
+        plane?.CheckBounds()
         
       //  let distance = CGPoint.Distance(P1: plane!.position, P2: island!.position)
         bullet?.Update()
