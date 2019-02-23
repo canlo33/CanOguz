@@ -58,7 +58,7 @@ class Collision {
             if(!object2.isColliding!) {
                 object2.isColliding = true
             }
-            if(object2.name! == "asteroid") {
+            if((object2.name! == "asteroid") || (object2.name! == "blackhole1") ) {
                 return true
             }
             else {

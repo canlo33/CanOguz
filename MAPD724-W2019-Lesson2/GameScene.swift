@@ -153,16 +153,17 @@ class GameScene: SKScene {
         if(distance < 700) {
             if((island!.position.x - (plane?.position.x)!) > 0) {
                 
-                island?.position.x += -5
+                island?.position.x += -4
                 print("Move Right")
                
             }
             if((island!.position.x - (plane?.position.x)!) < 0) {
                 
                 print("Move Left")
-                island?.position.x += 5
+                island?.position.x += 4
             }
         }
+        
         
         
         let action = SKAction.moveTo(x: destX, duration: 0.4)
@@ -195,6 +196,21 @@ class GameScene: SKScene {
                 
         
             }
+        }
+        
+        if(Collision.gameOverCheck(scene: self, object1: plane!, object2: island!)) {
+            
+            
+            // UserDefaults.standard.set(String(ScoreBoard.Score), forKey: "HighScore")
+            
+            
+            if let gameOverScene = GameOverScene(fileNamed: "GameOverScene") {
+                gameOverScene.scaleMode = .aspectFill
+                view?.presentScene(gameOverScene)
+            }
+            
+            
+            
         }
  
         
