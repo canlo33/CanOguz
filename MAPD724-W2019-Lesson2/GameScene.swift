@@ -50,6 +50,7 @@ class GameScene: SKScene {
         // add plane to scene
         plane = Plane()
         plane?.position = CGPoint(x: 0.0, y: -500.0)
+        
         addChild(plane!)
         
         print(screenSize.width)
@@ -146,14 +147,24 @@ class GameScene: SKScene {
         ocean1?.Update()
         ocean2?.Update()
         island?.Update()
-       
         plane?.Update()
-       // if(plane?.position.x)
+       
+        let distance = CGPoint.Distance(P1: (plane?.position)!, P2: island!.position)
+        if(distance < 700) {
+            if((island!.position.x - (plane?.position.x)!) > 0) {
+                
+                island?.position.x += -5
+                print("Move Right")
+               
+            }
+            if((island!.position.x - (plane?.position.x)!) < 0) {
+                
+                print("Move Left")
+                island?.position.x += 5
+            }
+        }
         
-        print(screenSize.width)
-
-
-
+        
         let action = SKAction.moveTo(x: destX, duration: 0.4)
         plane?.run(action)
         

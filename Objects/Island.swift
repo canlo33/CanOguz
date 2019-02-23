@@ -44,8 +44,6 @@ class Island : GameObject {
         self.position.y -= self.verticalSpeed!
         self.CheckBounds()
         self.zRotation = self.zRotation - 0.4
-        let distance = CGPoint.Distance(P1: self.position, P2: plane!.position)
-
         }
         
 }
