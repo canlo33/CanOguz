@@ -45,21 +45,7 @@ class Island : GameObject {
         self.CheckBounds()
         self.zRotation = self.zRotation - 0.4
         let distance = CGPoint.Distance(P1: self.position, P2: plane!.position)
-        if (Float(distance) <= 700) {
-         
-            if((plane!.position.x - self.position.x) < 0) {
-                print("Move Right")
-                plane!.position.x += 200
-                print(plane!.position.x)
-            }
-            
-           else if((plane!.position.x - self.position.x) >= 0) {
-                print("Move Left")
-                plane!.position.x += -200
-                print(plane!.position.x)
-            }
+
         }
         
-    
-    }
 }

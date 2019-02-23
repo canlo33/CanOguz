@@ -19,13 +19,13 @@ class Plane : GameObject {
     
     override func CheckBounds() {
         // check the right boundary
-        if(self.position.x > screenSize.width - self.halfWidth!) {
-            self.position.x = screenSize.width - self.halfWidth!
+        if(self.position.x > (screenSize.width) - self.halfWidth!) {
+            self.position.x = (screenSize.width) - self.halfWidth!
         }
-        
+
         // check the left boundary
-        if(self.position.x < -screenSize.width + self.halfWidth!) {
-            self.position.x = -screenSize.width + self.halfWidth!
+        if(self.position.x < -(screenSize.width) + self.halfWidth!) {
+            self.position.x = -(screenSize.width) + self.halfWidth!
         }
     }
     

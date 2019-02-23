@@ -68,6 +68,12 @@ class GameScene: SKScene {
                 // 3
                 let currentX = self.plane!.position.x
                 self.destX = currentX + CGFloat(data.acceleration.x * 1000)
+                if(self.destX > (screenSize.width) - self.plane!.halfWidth!) {
+                    self.destX = (screenSize.width) - self.plane!.halfWidth!
+                }
+                else if(self.destX < -(screenSize.width) + self.plane!.halfWidth!) {
+                    self.destX = -(screenSize.width) + self.plane!.halfWidth!
+                }
                 
             }
         }
@@ -142,11 +148,17 @@ class GameScene: SKScene {
         island?.Update()
        
         plane?.Update()
+       // if(plane?.position.x)
+        
+        print(screenSize.width)
+
+
+
         let action = SKAction.moveTo(x: destX, duration: 0.4)
-        
         plane?.run(action)
-        plane?.CheckBounds()
         
+        plane?.CheckBounds()
+
       //  let distance = CGPoint.Distance(P1: plane!.position, P2: island!.position)
         bullet?.Update()
         ScoreBoard.Score += 1
